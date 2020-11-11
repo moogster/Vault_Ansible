@@ -1,0 +1,2 @@
+[vault]
+vault_node ansible_host=172.16.54.7

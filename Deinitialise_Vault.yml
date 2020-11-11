@@ -1,0 +1,4 @@
+- hosts: vault
+  roles:
+    - role: Deinitialise_Vault
+  become: yes

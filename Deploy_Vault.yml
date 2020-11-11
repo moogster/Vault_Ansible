@@ -1,0 +1,7 @@
+- hosts: vault
+  roles:
+    - role: Deploy_Vault
+    - role: Vault_Init
+    - role: Vault_Unseal
+  become: yes
+

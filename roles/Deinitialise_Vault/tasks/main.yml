@@ -1,0 +1,10 @@
+
+- name: Stop vault service
+  service:
+    name: vault
+    state: stopped
+
+- name: Remove old Vault data file
+  file:
+    path: "{{ vault_storage_dir }}"
+    state: absent 

@@ -1,0 +1,10 @@
+vault_group: vault
+vault_user: vault
+vault_version: 1.6.0-rc
+vault_checksum: sha256:81cb1b23ee8539d72387c3d6d7ee5b667303c7639cc0611d625deb560d5d422b
+vault_install_prerequisites: ['unzip']
+unseal_keys_dir: "{{ playbook_dir }}/vault/unsealKey"
+root_token_dir: "{{ playbook_dir }}/vault/rootKey"
+vault_config_path: "/etc/vault.d/vault.hcl"
+vault_config_dir: "/etc/vault.d"
+vault_storage_dir: "/opt/vault"

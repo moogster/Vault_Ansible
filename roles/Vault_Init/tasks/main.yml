@@ -1,0 +1,46 @@
+- name: Create unseal directories
+  file:
+    path: "{{ unseal_keys_dir }}"
+    state: directory
+  delegate_to: localhost
+
+- name: Create root key directories
+  file:
+    path: "{{ root_token_dir }}"
+    state: directory
+  delegate_to: localhost
+
+- name: Initialise Vault operator
+  shell: |
+    /usr/local/bin/vault operator init \
+    -key-shares=5 \
+    -key-threshold=3 \
+    -format json
+  environment:
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#    VAULT_ADDR: "http://127.0.0.1:8200"
+>>>>>>> 6b4905d... Fix up
+=======
+>>>>>>> c13aaa9... Removed localhost
+    VAULT_ADDR: "http://{{ hostvars['vault_node'].ansible_host }}:8200"
+  register: vault_init_results
+
+- name: Parse output of vault init
+  set_fact:
+    vault_init_parsed: "{{ vault_init_results.stdout | from_json }}"
+
+- name: Write unseal keys to files
+  copy:
+    dest: "{{ unseal_keys_dir }}/unseal_key_{{ item.0 }}"
+    content: "{{ item.1 }}"
+  with_indexed_items: "{{ vault_init_parsed.unseal_keys_hex }}"
+  delegate_to: localhost
+
+- name: Write root token to file
+  copy:
+    content: "{{ vault_init_parsed.root_token }}"
+    dest: "{{root_token_dir}}/rootkey"
+  delegate_to: localhost
+
