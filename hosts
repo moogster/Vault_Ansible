@@ -1,10 +1,2 @@
 [vault]
-<<<<<<< HEAD
-<<<<<<< HEAD
 vault_node ansible_host=
-=======
-vault_node ansible_host=172.16.54.7
->>>>>>> 6b4905d... Fix up
-=======
-vault_node ansible_host=
->>>>>>> c4628c1... Tidy up
